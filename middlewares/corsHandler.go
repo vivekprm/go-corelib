@@ -13,7 +13,7 @@ type CorsConfig struct {
 
 type CorsHandler struct {
 	Next   http.Handler
-	Config CorsConfig
+	Config *CorsConfig
 }
 
 func (ch *CorsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
