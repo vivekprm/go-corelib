@@ -26,5 +26,9 @@ func (ch *CorsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if len(ch.Config.AllowedMethods) > 0 {
 		w.Header().Add("Access-Control-Allow-Methods", strings.Join(ch.Config.AllowedMethods, ","))
 	}
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
 	ch.Next.ServeHTTP(w, r)
 }
